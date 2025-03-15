@@ -23,6 +23,7 @@ Here I'll only check the boxes when I've completed every exercise or project.
 - [ ] Week 9
 - [ ] Week 10
 
+#### Additional Notes:
 
 * * *
 
@@ -54,3 +55,6 @@ Here I'll only check the boxes when I've completed every exercise or project.
 - [ ] Chapter 25
 - [ ] Chapter 26
 - [ ] Chapter 27
+
+#### Additional Notes:
+
