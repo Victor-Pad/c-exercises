@@ -5,14 +5,15 @@ Here I'll save exercises from CS50 and the book C Programming: A Modern Approach
 
 Eventually, I'll add Advent of Code challenges.
 
-### CS50
 ---
+
+### CS50
 - [ ] Week 1
 
 #### Additional Notes:
 
-### C Programming: A Modern Approach
 ---
+### C Programming: A Modern Approach
 - [ ] Chapter 1
 
 #### Additional Notes:
