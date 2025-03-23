@@ -1,9 +1,14 @@
 #include <stdio.h>
-#define RADIUS 10
 #define FOUR_THREE_FRACTION (4.0f / 3.0f)
 #define PI 3.14
-int hello(void) {}
+
 int main(void) {
-    float volume = FOUR_THREE_FRACTION * PI * (RADIUS * RADIUS * RADIUS);
+    float radius;
+
+    printf("Enter the radius value: ");
+    scanf_s("%f", &radius);
+
+    float volume = FOUR_THREE_FRACTION * PI * (radius * radius * radius);
+
     printf("Volume of sphere: %f", volume);
 }
