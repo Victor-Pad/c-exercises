@@ -18,7 +18,7 @@ Eventually, I'll add Advent of Code challenges.
 
 ---
 ### C Programming: A Modern Approach
-- [ ] Chapter 1
+- [x] Chapter 1
 - [ ] Chapter 2
 - [ ] Chapter 3
 - [ ] Chapter 4
