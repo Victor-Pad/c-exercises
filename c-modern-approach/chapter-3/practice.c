@@ -1,14 +1,18 @@
 #include <stdio.h>
 
 int main(void) {
-    int i;
-    float x;
+    int num1, denom1, num2, denom2, result_num, result_denom;
 
-    i = 40;
-    x = 839.21f;
+    printf("Enter first fraction: ");
+    scanf_s("%d/%d", &num1, &denom1);
 
-    printf("|%d|%5d|%-5d|%5.3d|\n", i, i, i, i);
-    printf("|%10.3f|%10.3e|%-10g|\n", x, x, x);
+    printf("Enter second fraction: ");
+    scanf_s("%d/%d", &num2, &denom2);
+
+    result_num = num1 * denom2 + num2 * denom1;
+    result_denom = denom1 * denom2;
+
+    printf("The sum is %d/%d\n", result_num, result_denom);
 
     return 0;
 }
