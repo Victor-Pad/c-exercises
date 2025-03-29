@@ -8,7 +8,7 @@ Eventually, I'll add Advent of Code challenges.
 ---
 
 ### CS50
-- [ ] Week 1
+- [x] Week 1
 - [ ] Week 2
 - [ ] Week 3
 - [ ] Week 4
@@ -20,7 +20,7 @@ Eventually, I'll add Advent of Code challenges.
 ### C Programming: A Modern Approach
 - [x] Chapter 1
 - [x] Chapter 2
-- [ ] Chapter 3
+- [x] Chapter 3
 - [ ] Chapter 4
 - [ ] Chapter 5
 - [ ] Chapter 6
