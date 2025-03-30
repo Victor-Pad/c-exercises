@@ -13,7 +13,7 @@ int main(void) {
     printf("Enter second group of five digits: ");
     scanf_s("%1d%1d%1d%1d%1d", &t1, &t2, &t3, &t4, &t5);
 
-    first_sum = (f1 + f2 + f3 + f4 + f5) * 3;
+    first_sum = (first_digit + f1 + f2 + f3 + f4 + f5) * 3;
     second_sum = t1 + t2 + t3 + t4 + t5;
 
     first_sum += second_sum;
