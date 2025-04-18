@@ -3,33 +3,24 @@
 int main(void) {
     int month1, day1, year1, month2, day2, year2;
 
-    printf("Enter first date (mm/dd/yy): ");
+    printf("Enter a date (mm/dd/yy): ");
     scanf_s("%d/%d/%d", &month1, &day1, &year1);
 
-    printf("Enter second date (mm/dd/yy): ");
-    scanf_s("%d/%d/%d", &month2, &day2, &year2);
+    while (1) {
+        printf("Enter a date (mm/dd/yy): ");
+        scanf_s("%d/%d/%d", &month2, &day2, &year2);
 
-    if (year1 < year2) {
-        printf("%d/%d/%.2d is earlier than %d/%d/%.2d", month1, day1, year1,
-               month2, day2, year2);
-    } else if (year2 < year1) {
-        printf("%d/%d/%.2d is earlier than %d/%d/%.2d", month2, day2, year2,
-               month1, day1, year1);
-    } else if (year1 == year2) {
-        if (month1 < month2) {
-            printf("%d/%d/%.2d is earlier than %d/%d/%.2d", month1, day1, year1,
-                   month2, day2, year2);
-        } else if (month2 < month1) {
-            printf("%d/%d/%.2d is earlier than %d/%d/%.2d", month2, day2, year2,
-                   month1, day1, year1);
-        } else {
-            if (day1 < day2) {
-                printf("%d/%d/%.2d is earlier than %d/%d/%.2d", month1, day1,
-                       year1, month2, day2, year2);
-            } else if (day2 < day1) {
-                printf("%d/%d/%.2d is earlier than %d/%d/%.2d", month2, day2,
-                       year2, month1, day1, year1);
-            }
+        if (month2 == 0 && day2 == 0 && year2 == 0) {
+            break;
+        }
+
+        if (year2 < year1 || (year2 == year1 && month2 < month1) ||
+            (year1 == year2 && month1 == month2 && day2 < day1)) {
+            year1 = year2;
+            month1 = month2;
+            day1 = day2;
         }
     }
+
+    printf("%d/%d/%.2d is the earliest date\n", month1, day1, year1);
 }
