@@ -3,7 +3,7 @@
 int main(void) {
     int len = 0;
 
-    printf("Enter a message.\n");
+    printf("Enter a message.");
     while (getchar() != '\n') {
         len++;
     }
