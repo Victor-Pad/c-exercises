@@ -1,16 +1,14 @@
 #include <stdio.h>
 
 int main(void) {
-    long n, sum = 0;
+    int len = 0;
 
-    printf("This program sums a series of integers\n");
-
-    printf("Enter integers (0 to terminate): ");
-
-    scanf_s("%ld", &n);
-    while (n != 0) {
-        sum += n;
-        scanf_s("%ld", &n);
+    printf("Enter a message.\n");
+    while (getchar() != '\n') {
+        len++;
     }
-    printf("The sum is: %ld", sum);
+
+    printf("Your message is %d character(s) long.\n", len);
+
+    return 0;
 }
