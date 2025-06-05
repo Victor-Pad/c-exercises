@@ -20,9 +20,13 @@ int main(void) {
 
     printf("\n");
     for (year = 1; year <= num_years; year++) {
+        for (int month = 1; month <= 12; month++) {
+            for (i = 0; i < NUM_RATES; i++) {
+                value[i] *= 1 + ((low_rate + i) / 100.0 / 12.0);
+            }
+        }
         printf("%3d ", year);
         for (i = 0; i < NUM_RATES; i++) {
-            value[i] += (low_rate + i) / 100.0 * value[i];
             printf("%7.2f", value[i]);
         }
         printf("\n");
