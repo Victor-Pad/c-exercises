@@ -4,8 +4,9 @@ int main(void) {
     float students[5] = {0.0}, table[5][5] = {0.0};
     float grade, average, sum = 0.0;
 
+    printf("Enter 5 grades per student: \n");
     for (int i = 0; i < 5; i++) {
-        printf("Enter 5 quiz grades for student #%d: ", i + 1);
+        printf("Student #%d: ", i + 1);
         for (int j = 0; j < 5; j++) {
             scanf_s("%f", &grade);
             table[i][j] = grade;
@@ -22,40 +23,42 @@ int main(void) {
     }
 
     // Avg. per student
-    printf("Average per student: \n");
+    printf("\n\nAverage per student: \n");
     for (int i = 0; i < 5; i++) {
         average = students[i] / 5;
         printf("Average Grade for student #%d: %.2f\n", i + 1, average);
     }
 
     // Avg. Score per Quiz
-    printf("Average per Quiz: \n");
+    printf("\n\nAverage per Quiz: \n");
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
-            average = table[j][i] / 5;
-            printf("Average Grade for Quiz#%d: %.2f\n", i + 1, average);
+            sum += table[j][i];
         }
+        average = sum / 5;
+        sum = 0.0;
+        printf("Average Grade for Quiz #%d: %.2f\n", i + 1, average);
     }
 
     // Highest score
-    float highest = table[0][0];
-    printf("Highest Grade per Quiz: \n");
+    printf("\n\nHighest Grade per Quiz: \n");
     for (int i = 0; i < 5; i++) {
+        float highest = table[0][0];
         for (int j = 0; j < 5; j++) {
             if (highest < table[j][i])
                 highest = table[j][i];
         }
-        printf("Highest Grade for Quiz#%d: %.2f\n", i + 1, highest);
+        printf("Highest Grade for Quiz #%d: %.2f\n", i + 1, highest);
     }
 
     // Lowest score
-    float lowest = table[0][0];
-    printf("Lowest Grade per Quiz: \n");
+    printf("\n\nLowest Grade per Quiz: \n");
     for (int i = 0; i < 5; i++) {
+        float lowest = table[0][0];
         for (int j = 0; j < 5; j++) {
             if (lowest > table[j][i])
                 lowest = table[j][i];
         }
-        printf("Highest Grade for Quiz#%d: %.2f\n", i + 1, lowest);
+        printf("Lowest Grade for Quiz #%d: %.2f\n", i + 1, lowest);
     }
 }
