@@ -1,35 +1,61 @@
 #include <stdio.h>
 
 int main(void) {
-    int table[5][5] = {0};
-    int num, sum_col = 0, sum_row = 0;
+    float students[5] = {0.0}, table[5][5] = {0.0};
+    float grade, average, sum = 0.0;
 
     for (int i = 0; i < 5; i++) {
         printf("Enter 5 quiz grades for student #%d: ", i + 1);
         for (int j = 0; j < 5; j++) {
-            scanf_s("%d", &num);
-            table[i][j] = num;
+            scanf_s("%f", &grade);
+            table[i][j] = grade;
         }
     }
 
-    printf("Row totals: ");
+    // Compute total score
     for (int i = 0; i < 5; i++) {
-        sum_row = 0;
         for (int j = 0; j < 5; j++) {
-            sum_row += table[i][j];
+            sum += table[i][j];
         }
-
-        printf("%d ", sum_row);
+        students[i] = sum;
+        sum = 0.0;
     }
 
-    printf("\nColumn totals: ");
+    // Avg. per student
+    printf("Average per student: \n");
     for (int i = 0; i < 5; i++) {
-        sum_col = 0;
-        for (int j = 0; j < 5; j++) {
-            sum_col += table[j][i];
-        }
-
-        printf("%d ", sum_col);
+        average = students[i] / 5;
+        printf("Average Grade for student #%d: %.2f\n", i + 1, average);
     }
-    printf("\n");
+
+    // Avg. Score per Quiz
+    printf("Average per Quiz: \n");
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            average = table[j][i] / 5;
+            printf("Average Grade for Quiz#%d: %.2f\n", i + 1, average);
+        }
+    }
+
+    // Highest score
+    float highest = table[0][0];
+    printf("Highest Grade per Quiz: \n");
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (highest < table[j][i])
+                highest = table[j][i];
+        }
+        printf("Highest Grade for Quiz#%d: %.2f\n", i + 1, highest);
+    }
+
+    // Lowest score
+    float lowest = table[0][0];
+    printf("Lowest Grade per Quiz: \n");
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (lowest > table[j][i])
+                lowest = table[j][i];
+        }
+        printf("Highest Grade for Quiz#%d: %.2f\n", i + 1, lowest);
+    }
 }
