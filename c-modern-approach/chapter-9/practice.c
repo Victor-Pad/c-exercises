@@ -1,16 +1,26 @@
+#include <stdbool.h>
 #include <stdio.h>
 
-double average(double a, double b) {
-    return (a + b) / 2;
+bool is_prime(int n) {
+    int divisor;
+
+    if (n <= 1)
+        return false;
+    for (divisor = 2; divisor * divisor <= n; divisor++) {
+        if (n % divisor == 0) {
+            return false;
+        }
+        return true;
+    }
 }
 
 int main(void) {
-    double x, y, z;
+    int n;
 
-    printf("Enter three numbers: ");
-    scanf_s("%lf%lf%lf", &x, &y, &z);
-
-    printf("Average of %g and %g: %g\n", x, y, average(x, y));
-    printf("Average of %g and %g: %g\n", y, z, average(y, z));
-    printf("Average of %g and %g: %g\n", x, z, average(x, z));
+    printf("Enter a number: ");
+    scanf_s("%d", &n);
+    if (is_prime(n))
+        printf("Prime\n");
+    else
+        printf("Not prime\n");
 }
