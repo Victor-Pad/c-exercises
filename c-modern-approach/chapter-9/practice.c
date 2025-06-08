@@ -1,6 +1,19 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+bool is_prime(int n);
+
+int main(void) {
+    int n;
+
+    printf("Enter a number: ");
+    scanf_s("%d", &n);
+    if (is_prime(n))
+        printf("Prime\n");
+    else
+        printf("Not prime\n");
+}
+
 bool is_prime(int n) {
     int divisor;
 
@@ -12,15 +25,4 @@ bool is_prime(int n) {
         }
         return true;
     }
-}
-
-int main(void) {
-    int n;
-
-    printf("Enter a number: ");
-    scanf_s("%d", &n);
-    if (is_prime(n))
-        printf("Prime\n");
-    else
-        printf("Not prime\n");
 }
