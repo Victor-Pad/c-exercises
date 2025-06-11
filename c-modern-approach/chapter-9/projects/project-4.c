@@ -1,32 +1,45 @@
 #include <ctype.h>
+#include <stdbool.h>
 #include <stdio.h>
 
+void read_word(int counts[26]);
+bool equal_array(int counts1[26], int counts2[26]);
+
 int main(void) {
-    char ch;
-    int anagram = 0, word[26] = {0};
+    int counts[26] = {0}, counts1[26], counts2[26];
 
     printf("Enter first word: ");
-    while ((ch = getchar()) != '\n') {
-        if (isalpha(ch))
-            word[tolower(ch) - 'a']++;
+    read_word(counts);
+    for (int i = 0; i < 26; i++) {
+        counts1[i] = counts[i];
+        counts[i] = 0;
     }
 
     printf("Enter second word: ");
+    read_word(counts);
+    for (int i = 0; i < 26; i++) {
+        counts2[i] = counts[i];
+    }
+
+    if (equal_array(counts1, counts2))
+        printf("The words are anagrams.");
+    else
+        printf("The words are not anagrams.");
+}
+
+void read_word(int counts[26]) {
+    char ch;
     while ((ch = getchar()) != '\n') {
         if (isalpha(ch))
-            word[tolower(ch) - 'a']--;
+            counts[tolower(ch) - 'a']++;
     }
+}
 
+bool equal_array(int counts1[26], int counts2[26]) {
     for (int i = 0; i < 26; i++) {
-        if (word[i] != 0) {
-            anagram = 1;
-            break;
-        }
+        if (counts1[i] != counts2[i])
+            return false;
     }
 
-    if (anagram == 1)
-        printf("The words are not anagrams.");
-    else {
-        printf("The words are anagrams.");
-    }
+    return true;
 }
