@@ -22,9 +22,9 @@ int main(void) {
     }
 
     if (equal_array(counts1, counts2))
-        printf("The words are anagrams.");
+        printf("The words are anagrams.\n");
     else
-        printf("The words are not anagrams.");
+        printf("The words are not anagrams.\n");
 }
 
 void read_word(int counts[26]) {
