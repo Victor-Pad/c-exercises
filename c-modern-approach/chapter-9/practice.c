@@ -1,28 +1,55 @@
-#include <stdbool.h>
 #include <stdio.h>
+#define N 10
 
-bool is_prime(int n);
+void quicksort(int a[], int low, int high);
+int split(int a[], int low, int high);
 
 int main(void) {
-    int n;
+    int a[N], i;
 
-    printf("Enter a number: ");
-    scanf_s("%d", &n);
-    if (is_prime(n))
-        printf("Prime\n");
-    else
-        printf("Not prime\n");
+    printf("Enter %d numbers to be sorted: ", N);
+    for (i = 0; i < N; i++) {
+        scanf_s("%d", &a[i]);
+    }
+
+    quicksort(a, 0, N - 1);
+
+    printf("In sorted order: ");
+    for (i = 0; i < N; i++) {
+        printf("%d", a[i]);
+    }
+    printf("\n");
+
+    return 0;
 }
 
-bool is_prime(int n) {
-    int divisor;
+void quicksort(int a[], int low, int high) {
+    int middle;
 
-    if (n <= 1)
-        return false;
-    for (divisor = 2; divisor * divisor <= n; divisor++) {
-        if (n % divisor == 0) {
-            return false;
-        }
-        return true;
+    if (low >= high)
+        return;
+    middle = split(a, low, high);
+    quicksort(a, low, middle - 1);
+    quicksort(a, middle + 1, high);
+}
+
+int split(int a[], int low, int high) {
+    int part_element = a[low];
+
+    for (;;) {
+        while (low < high && part_element <= a[high])
+            high--;
+        if (low >= high)
+            break;
+        a[low++] = a[high];
+
+        while (low < high && a[low] <= part_element)
+            low++;
+        if (low >= high)
+            break;
+        a[high--] = a[low];
     }
+
+    a[high] = part_element;
+    return high;
 }
