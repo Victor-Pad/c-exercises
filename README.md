@@ -26,7 +26,7 @@ Eventually, I'll add Advent of Code challenges.
 - [x] Chapter 6
 - [x] Chapter 7
 - [x] Chapter 8
-- [ ] Chapter 9
+- [x] Chapter 9
 - [ ] Chapter 10
 - [ ] Chapter 11
 - [ ] Chapter 12
