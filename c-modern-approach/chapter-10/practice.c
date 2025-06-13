@@ -8,41 +8,45 @@
 int secret_number;
 /* prototypes */
 void initialize_number_generator(void);
-void choose_new_secret_number(void);
-void read_guesses(void);
+int new_secret_number(void);
+void read_guesses(int secret_number);
 
 int main(void) {
     char command;
+    int secret_number;
+
     printf("Guess the secret number between 1 and %d.\n\n", MAX_NUMBER);
     initialize_number_generator();
     do {
-        choose_new_secret_number();
+        secret_number = new_secret_number();
         printf("A new number has been chosen.\n");
-        read_guesses();
+        read_guesses(secret_number);
         printf("Play again? (Y/N) ");
         scanf_s(" %c", &command);
         printf("\n");
     } while (command == 'y' || command == 'Y');
+
     return 0;
 } /********************************************************** *
-     initialize_number_generator: Initializes the random * * number generator
-     using * * the time of day. *
-     **********************************************************/
+    new_secret_number: Returns a randomly chosen number * * between 1 and
+    MAX_NUMBER.
+    **********************************************************/
 void initialize_number_generator(void) {
     srand((unsigned)time(NULL));
 } /********************************************************** *
      choose_new_secret_number: Randomly selects a number * * between 1 and
      MAX_NUMBER and * * stores it in secret_number. *
      **********************************************************/
-void choose_new_secret_number(void) {
-    secret_number = rand() % MAX_NUMBER + 1;
+int new_secret_number(void) {
+    return rand() % MAX_NUMBER + 1;
 } /********************************************************** * read_guesses:
      Repeatedly reads user guesses and tells * * the user whether each guess is
      too low, * * too high, or correct. When the guess is * * correct, prints
      the total number of * * guesses and returns. *
      **********************************************************/
-void read_guesses(void) {
+void read_guesses(int secret_number) {
     int guess, num_guesses = 0;
+
     for (;;) {
         num_guesses++;
         printf("Enter guess: ");
