@@ -20,6 +20,7 @@ int main(void) {
 
     printf("Enter an RPN expression: ");
     while (true) {
+        make_empty();
         scanf_s(" %c", &ch);
 
         if (ch == 'q')
