@@ -1,55 +1,23 @@
+/* Checks planet names */
 #include <stdio.h>
-#include <string.h>
+#include <string.h >
 
-#define MAX_REMIND 50 /* maximum number of reminders */
-#define MSG_LEN 60    /* max length of reminder message */
+#define NUM_PLANETS 9
 
-int read_line(char str[], int n);
+int main(int argc, char *argv[]) {
+    char *planets[] = {"Mercury", "Venus",  "Earth",   "Mars", "Jupiter",
+                       "Saturn",  "Uranus", "Neptune", "Pluto"};
 
-int main(void) {
-    char reminders[MAX_REMIND][MSG_LEN + 3];
-    char day_str[3], msg_str[MSG_LEN + 1];
-    int day, i, j, num_remind = 0;
-
-    for (;;) {
-        if (num_remind == MAX_REMIND) {
-            printf("-- No space left --\n");
-            break;
-        }
-
-        printf("Enter day and reminder: ");
-        scanf_s("%2d", &day);
-
-        if (day == 0)
-            break;
-
-        sprintf(day_str, "%2d", day);
-        read_line(msg_str, MSG_LEN);
-
-        for (i = 0; i < num_remind; i++)
-            if (strcmp(day_str, reminders[i]) < 0)
+    int i, j;
+    for (i = 1; i < argc; i++) {
+        for (j = 0; j < NUM_PLANETS; j++)
+            if (strcmp(argv[i], planets[j]) == 0) {
+                printf("%s is planet %d\n", argv[i], j + 1);
                 break;
-
-        for (j = num_remind; j > i; j--)
-            strcpy(reminders[j], reminders[j - 1]);
-        strcpy(reminders[i], day_str);
-        strcat(reminders[i], msg_str);
-        num_remind++;
+            }
+        if (j == NUM_PLANETS)
+            printf("%s is not a planet\n", argv[i]);
     }
 
-    printf("\nDay Reminder\n");
-
-    for (i = 0; i < num_remind; i++)
-        printf(" %s\n", reminders[i]);
     return 0;
-}
-int read_line(char str[], int n) {
-    int ch, i = 0;
-
-    while ((ch = getchar()) != '\n')
-        if (i < n)
-            str[i++] = ch;
-
-    str[i] = '\0';
-    return i;
 }
