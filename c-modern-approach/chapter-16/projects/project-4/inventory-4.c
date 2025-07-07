@@ -8,6 +8,7 @@ struct part {
     int number;
     char name[NAME_LEN + 1];
     int on_hand;
+    float price;
 } inventory[MAX_PARTS];
 
 int num_parts = 0; /* number of parts currently stored */
@@ -16,6 +17,7 @@ int find_part(int number);
 void insert(void);
 void search(void);
 void update(void);
+void change(void);
 void print(void);
 
 int main(void) {
@@ -37,6 +39,9 @@ int main(void) {
                 break;
             case 'u':
                 update();
+                break;
+            case 'c':
+                change();
                 break;
             case 'p':
                 print();
@@ -76,8 +81,10 @@ void insert(void) {
 
     inventory[num_parts].number = part_number;
     printf("Enter part name: ");
-
     read_line(inventory[num_parts].name, NAME_LEN);
+
+    printf("Enter price: ");
+    scanf_s("%f", &inventory[num_parts].price);
 
     printf("Enter quantity on hand: ");
     scanf("%d", &inventory[num_parts].on_hand);
@@ -95,6 +102,7 @@ void search(void) {
     if (i >= 0) {
         printf("Part name: %s\n", inventory[i].name);
         printf("Quantity on hand: %d\n", inventory[i].on_hand);
+        printf("Price: %f\n", inventory[i].price);
     } else
         printf("Part not found.\n");
 }
@@ -114,14 +122,29 @@ void update(void) {
         printf("Part not found.\n");
 }
 
+void change(void) {
+    int i, number, change;
+
+    printf("Enter part number: ");
+    scanf("%d", &number);
+    i = find_part(number);
+
+    if (i >= 0) {
+        printf("Enter change in price: ");
+        scanf("%d", &change);
+        inventory[i].price += change;
+    } else
+        printf("Part not found.\n");
+}
+
 void print(void) {
     int i;
 
     printf(
-        "Part Number Part Name "
-        "Quantity on Hand\n");
+        "Part Number  Part Name\t Price "
+        "  \tQuantity on Hand\n");
 
     for (i = 0; i < num_parts; i++)
-        printf("%7d %-25s%11d\n", inventory[i].number, inventory[i].name,
-               inventory[i].on_hand);
+        printf("%7d %15s  $%.2f%11d\n", inventory[i].number, inventory[i].name,
+               inventory[i].price, inventory[i].on_hand);
 }
