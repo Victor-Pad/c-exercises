@@ -1,62 +1,45 @@
+#include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#define MAX_REMIND 50
-#define MSG_LEN 60
-
-int read_line(char str[], int n);
+void tabulate(double (*f)(double), double first, double last, double incr);
 
 int main(void) {
-    char *reminders[MAX_REMIND];
-    char day_str[3], msg_str[MSG_LEN + 1];
-    int day, i, j, num_remind = 0;
+    double final, increment, initial;
 
-    for (;;) {
-        if (num_remind == MAX_REMIND) {
-            printf("-- No space left --\n");
-            break;
-        }
+    printf("Enter initial value: ");
+    scanf("%lf", &initial);
 
-        printf("Enter day and reminder: ");
-        scanf("%2d", &day);
-        if (day == 0)
-            break;
-        sprintf(day_str, "%2d", day);
+    printf("Enter final value: ");
+    scanf("%lf", &final);
 
-        read_line(msg_str, MSG_LEN);
-        for (i = 0; i < num_remind; i++)
-            if (strcmp(day_str, reminders[i]) < 0)
-                break;
+    printf("Enter increment: ");
+    scanf("%lf", &increment);
 
-        for (j = num_remind; j > i; j--)
-            reminders[j] = reminders[j - 1];
+    printf(
+        "\n x cos(x)"
+        "\n ------- -------\n");
+    tabulate(cos, initial, final, increment);
 
-        reminders[i] = malloc(2 + strlen(msg_str) + 1);
-        if (reminders[i] == NULL) {
-            printf("-- No space left --\n");
-            break;
-        }
+    printf(
+        "\n x sin(x)"
+        "\n ------- -------\n");
+    tabulate(sin, initial, final, increment);
 
-        strcpy(reminders[i], day_str);
-        strcat(reminders[i], msg_str);
-        num_remind++;
-    }
-
-    printf("\nDay Reminder\n");
-    for (i = 0; i < num_remind; i++)
-        printf(" %s\n", reminders[i]);
+    printf(
+        "\n x tan(x)"
+        "\n ------- -------\n");
+    tabulate(tan, initial, final, increment);
 
     return 0;
 }
 
-int read_line(char str[], int n) {
-    int ch, i = 0;
+void tabulate(double (*f)(double), double first, double last, double incr) {
+    double x;
+    int i, num_intervals;
 
-    while ((ch = getchar()) != '\n')
-        if (i < n)
-            str[i++] = ch;
-
-    str[i] = '\0';
-    return i;
+    num_intervals = ceil((last - first) / incr);
+    for (i = 0; i <= num_intervals; i++) {
+        x = first + i * incr;
+        printf("%10.5f %10.5f\n", x, (*f)(x));
+    }
 }
