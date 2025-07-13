@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "readline.h"
 
 #define NAME_LEN 25
@@ -17,6 +18,7 @@ void insert(void);
 void search(void);
 void update(void);
 void print(void);
+int compare_parts(const void *p, const void *q);
 
 int main(void) {
     char code;
@@ -117,6 +119,7 @@ void update(void) {
 void print(void) {
     int i;
 
+    qsort(inventory, num_parts, sizeof(struct part), compare_parts);
     printf(
         "Part Number Part Name "
         "Quantity on Hand\n");
@@ -124,4 +127,8 @@ void print(void) {
     for (i = 0; i < num_parts; i++)
         printf("%7d %-25s%11d\n", inventory[i].number, inventory[i].name,
                inventory[i].on_hand);
+}
+
+int compare_parts(const void *p, const void *q) {
+    return ((struct part *)p)->number - ((struct part *)q)->number;
 }
