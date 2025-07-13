@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "readline.h"
 
 #define NAME_LEN 25
@@ -8,8 +9,9 @@ struct part {
     int number;
     char name[NAME_LEN + 1];
     int on_hand;
-} inventory[MAX_PARTS];
+} *inventory;
 
+int current_size = 10;
 int num_parts = 0; /* number of parts currently stored */
 
 int find_part(int number);
@@ -19,6 +21,13 @@ void update(void);
 void print(void);
 
 int main(void) {
+    inventory = malloc(10 * sizeof(struct part));
+
+    if (inventory == NULL) {
+        printf("Error: Malloc unsuccesful with the inventory array.");
+        exit(EXIT_FAILURE);
+    }
+
     char code;
 
     for (;;) {
@@ -62,9 +71,14 @@ int find_part(int number) {
 void insert(void) {
     int part_number;
 
-    if (num_parts == MAX_PARTS) {
-        printf("Database is full; can't add more parts.\n");
-        return;
+    if (num_parts == current_size) {
+        printf("Database is full; Adding more space.\n");
+        realloc(inventory, current_size * sizeof(struct part));
+
+        if (inventory == NULL) {
+            printf("Error: Realloc failure in insert");
+            return;
+        }
     }
 
     printf("Enter part number: ");
