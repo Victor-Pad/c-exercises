@@ -12,12 +12,13 @@ struct part {
 };
 
 struct part *inventory = NULL; /* points to first part */
-struct part *find_part(int number);
 
+struct part *find_part(int number);
 void insert(void);
 void search(void);
 void update(void);
 void print(void);
+void erase();
 
 int main(void) {
     char code;
@@ -40,6 +41,9 @@ int main(void) {
                 break;
             case 'p':
                 print();
+                break;
+            case 'e':
+                erase();
                 break;
             case 'q':
                 return 0;
@@ -137,4 +141,31 @@ void print(void) {
 
     for (p = inventory; p != NULL; p = p->next)
         printf("%7d %-25s%11d\n", p->number, p->name, p->on_hand);
+}
+
+void erase() {
+    int n;
+    struct part *p, *cur, *prev;
+
+    printf("Enter part number: ");
+    scanf_s("%d", &n);
+    p = find_part(n);
+
+    if (p == NULL) {
+        printf("Error: Part %d not found", n);
+        return;
+    }
+
+    for (cur = inventory, prev = NULL; cur != NULL && cur->number != n;
+         prev = cur, cur = cur->next)
+        ;
+
+    if (cur == NULL)
+        return;
+    if (prev == NULL)
+        inventory = inventory->next;
+    else
+        prev->next = cur->next;
+    free(cur);
+    return;
 }
