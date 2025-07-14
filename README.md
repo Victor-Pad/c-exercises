@@ -34,7 +34,7 @@ Eventually, I'll add Advent of Code challenges.
 - [x] Chapter 14
 - [x] Chapter 15
 - [x] Chapter 16
-- [ ] Chapter 17
+- [x] Chapter 17
 - [ ] Chapter 18
 - [ ] Chapter 19
 - [ ] Chapter 20
