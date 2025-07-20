@@ -57,20 +57,20 @@ void enqueue(Queue q, Item i) {
     q->len++;
 }
 
-void dequeue(Queue q) {
+Item dequeue(Queue q) {
     if (is_empty(q))
         terminate("Error in dequeue: queue is empty");
 
-    q->next_removed++;
     wrap_around(q);
     q->len--;
+    return q->contents[q->next_removed++];
 }
 
-int peek_front(Queue q) {
+Item peek_front(Queue q) {
     return q->contents[q->next_removed];
 }
 
-int peek_back(Queue q) {
+Item peek_back(Queue q) {
     if (q->first_empty == 0)
         return q->contents[QUEUE_SIZE - 1];
 
