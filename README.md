@@ -37,8 +37,9 @@ Eventually, I'll add Advent of Code challenges.
 - [x] Chapter 17
 - [x] Chapter 18
 - [x] Chapter 19
-- [ ] Chapter 20
-- [ ] Chapter 21
-- [ ] Chapter 22
+- [x] Chapter 20
 
 #### Additional Notes:
+After several months, I've completed chapter 20 of the book. Originally, I wanted to complete chapters 21 and 22, but due to time constraints, I decided to leave it at 20. 
+
+Today, 7/22/2025, I'll start learning about microcontrollers with the STM32C071RB and finally kickstart the "hard" part of learning Embedded Systems.
